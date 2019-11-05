@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysample-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: mysample-world
+  minReadySeconds: 10
+  #strategy:
+    #type: RollingUpdate
+    #rollingUpdate:
+      #maxUnavailable: 1
+      #maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: mysample-world
+    spec:
+      containers:
+      - name: mysample-pod
+        image: nigelpoulton/k8sbook:edge
+        ports:
+        - containerPort: 8080

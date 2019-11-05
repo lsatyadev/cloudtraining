@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-python
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: python
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      containers:
+      - name: python-pod
+        image: cloudsiksha/pythonapp:v1
+        ports:
+        - containerPort: 80
